@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>X-Tyle</title>
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: 1px dashed red;
+}
+
+header {
+    width: 100vw;
+    line-height: 8vh;
+    text-align: center;
+    color: #fff;
+    background-color: #B20000;
+}
+
+main {
+    width: 60%;
+    height: 92vh;
+    margin: auto;
+    position: relative;
+    border: 1px solid #000;
+}
+
+section {
+    height: 91vh;
+    display: none;
+    padding: 1vh 1rem;
+}
+
+div {
+    margin: 1rem 0;
+    justify-content: space-between;
+}
+
+span {
+    display: inline-flex;
+    text-overflow: clip;
+    font-size: 2rem;
+    width: 50%;
+    
+    text-overflow: clip;
+    overflow-x: hidden;
+    white-space: nowrap;
+}
+
+.infos input {
+    width: 100%;
+    border: 1px solid darkgrey;
+    border-radius: 4.3px;
+}
+
+.infos div{
+    margin: .8rem 0;
+}
+
+textarea {
+  width: 100%;
+  height: 10vh;
+  min-height: 10vh;
+  max-height: 10vh;
+  border-radius: 4.3px;
+}
+
+.qtd {
+  font-size: 1.2rem;
+  border: none;
+  background-color: transparent;
+  text-align: center;
+}
+
+#total {
+    width: 100%;
+    height: 5vh;
+    position: absolute;
+    bottom: 10vh;
+    display: flex;
+    background-color: aqua;
+    justify-content: right;
+    align-items: center;
+    padding-right: 10%;
+    
+}
+
+/* BUTTON================================================BUTTON */
+.dv-botoes {
+  height: 8vh;
+  bottom: 0;
+}
+
+button {
+    cursor: pointer;
+    transition: 50ms ease;
+    text-align: center;
+    align-items: center;
+    vertical-align: middle;
+    border-radius: 4.3px;
+    color: #fff;
+    font-weight: bold;
+    border: 1px solid gray;
+    justify-content: space-around;
+    box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.25);
+}
+button:active {
+    transform: scale(0.96);
+}
+
+.btMenos, .btMais{
+    vertical-align: baseline;
+    width: 16%;
+    height: 100%;
+    
+    font-size: 1.2rem;
+    font-weight: bolder;
+    font-stretch: ultra-expanded;
+
+    align-items: center;
+    justify-content: center;
+    
+    color: #fff;
+    cursor: pointer;
+    border: 1px solid grey;
+    transition: all 10ms linear;
+  	border-radius: 4.3px;
+    box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);   
+}
+
+.btMenos {
+  margin-left: 1.5%;
+  background-color: red;
+}
+.btMais {
+  background-color: green;
+}
+
+.btNext {
+  background-color: green;
+}
+
+.btBack {
+  background-color: red;
+}
+
+div:not(.infos div, .dv-botoes) {
+    height: 2rem;
+}
+
+.dv-botoes{
+    display: flex;
+    position: absolute;
+    bottom: 2vh;
+    width: 100%;
+    height: 10vh;
+    justify-content: center;
+}
+.dv-botoes .btn { display: flex; margin: 0 auto; width: 35% }
+
+/* INPUT====================================INPUT */
+input {
+    width: 2rem;
+    transition-duration: 150ms;
+    font-size: 1.1rem;
+    border-radius: 4.3px;
+    height: 2rem;
+    padding-left: 0.2vw;
+    border: 1px solid grey;
+}
+input:focus {
+    /* backgroundColor = 'var(--input-2)'; */
+        outline: 1px solid #77b6ff;
+        box-shadow: -2px -2px 3px #00000020, 0 0 6px #0051ff99;
+}
+
+@media (max-width: 750px)
+{
+main {
+    width: 100%;
+    border: none;
+}
+
+section {height: 82vh}
+
+span {
+  font-size: 1.4rem;
+  width: 50%;
+}
+
+input {
+  width: 10%;
+}
+
+input, span, .btMais, .btMenos {
+  height: 2rem;
+  line-height: 2rem;
+}
+
+input[type='radio'] {
+    width: 1rem;
+}
+
+legend {
+  text-align: center;
+}
+
+fieldset {
+  border-radius: 6.3px;
+}
+
+fieldset label
+{
+    display: inline-flex;
+    width: 100%;
+    line-height: 1rem;
+    vertical-align: middle;
+    align-items: center;
+}
+}
+
+
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Mary Lanches</h1>
+</header>
+
+<main>
+    <section style="display:block">
+      <h1>LANCHES</h1>
+        <div>
+            <span>X-Burguer&ensp;- - - - - - - -</span>
+            <button class="btMenos" type="button">–</button>
+            <input type="number" class="qtd" value="0" disabled/>
+            <button class="btMais" type="button">+</button>
+        </div>
+        <div>
+            <span>X-Salada&ensp;- - - - - - - - - - - - </span>
+            <button class="btMenos" type="button">–</button>
+            <input type="number" class="qtd" value="0" disabled/>
+            <button class="btMais" type="button">+</button>
+        </div>
+        <div>
+            <span>X-Egg&ensp;- - - - - - - - - - - - </span>
+            <button class="btMenos" type="button">–</button>
+            <input type="number" class="qtd" value="0" disabled/>
+            <button class="btMais" type="button">+</button>
+        </div>
+        <div>
+            <span class="">Hot-Dog&ensp;- - - - - - - - - - - - </span>
+            <button class="btMenos" type="button">–</button>
+            <input type="number" class="qtd" value="0" disabled/>
+            <button class="btMais" type="button">+</button>
+        </div>
+        <div>
+            <span>Fritas (porção)&ensp;- - - - - - - - - </span>
+            <button class="btMenos" type="button">–</button>
+            <input type="number" class="qtd" value="0" disabled/>
+            <button class="btMais" type="button">+</button>
+        </div>
+        
+        <label for="obs">Observações</label>
+        <textarea id="obs" name="obs" placeholder="Coloque as suas observações de acordo com as suas preferências"></textarea>
+    </section>
+    
+    <section>
+        <h1>BEBIDAS</h1>
+        <div>
+            <span>Refri Lata 350ml</span>
+            <button class="btMenos" type="button">–</button>
+            <input type="number" class="qtd" value="0" disabled/>
+            <button class="btMais" type="button">+</button>
+        </div>
+        <div>
+            <span>Refri Mini 150ml</span>
+            <button class="btMenos" type="button">–</button>
+            <input type="number" class="qtd" value="0" disabled/>
+            <button class="btMais" type="button">+</button>
+        </div>
+        <div>
+            <span>Refri 2lts</span>
+            <button class="btMenos" type="button">–</button>
+            <input type="number" class="qtd" value="0" disabled/>
+            <button class="btMais" type="button">+</button>
+        </div>
+        <div>
+            <span>Coca-Cola 2lts</span>
+            <button class="btMenos" type="button">–</button>
+            <input type="number" class="qtd" value="0" disabled/>
+            <button class="btMais" type="button">+</button>
+        </div>
+    </section>
+
+    <section class="infos">
+        <h1>Informações</h1>
+        <div>
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome"/>
+        </div>
+        <div>
+            <label for="tel">Telefone</label>
+            <input type="tel" id="tel" name="tel"/>
+        </div>
+        <fieldset id="dv-frete">
+            <legend>Forma de Entrega</legend>
+            <label><input type="radio" value="0" name="frete"/>Buscar no Local</label>
+            <hr>
+            <label><input type="radio" value="1" name="frete"/>Entrega Delivery</label>
+        </fieldset>
+        <div id="ender">
+        <div>
+            <label for="end">Endereço</label>
+            <input type="text" id="end" name="end"/>
+        </div>
+        <div>
+            <label for="bai">Bairro</label>
+            <input type="text" id="bai" name="bai"/>
+        </div>
+        <div>
+            <label for="num">Número</label>
+            <input type="text" id="num" name="num"/>
+        </div>
+        <label for="ref">Ponto de referência</label>
+        <textarea id="ref" name="ref"></textarea>
+        </div>
+    </section>
+
+    <section class="final">
+        <h1>Resumo do Pedido</h1>
+        <p>
+        </p>
+    </section>
+
+    <div id="total">
+        <p>XXXXXXX</p>
+    </div>
+    <div class="dv-botoes">
+        <button class="btn btLeft btBack" type="button" name="cl-adicional" value="dv-empreita2">VOLTAR</button>
+        <button class="btn btRight btNext" type="button" name="cl-adicional" value="dv-orcamento">AVANÇAR</button>
+    </div>
+</main>
+
+    <!-- <button type="button" class="h10 w10"></button>
+
+    <span class=""></span> -->
+
+<script>
+//NUMEROS - NUMEROS - NUMEROS---------------------------------------------------------------
+const qtd = document.getElementsByClassName('qtd');
+const mais = document.getElementsByClassName('btMais');
+const menos = document.getElementsByClassName('btMenos');
+
+for (let x=0; x<qtd.length; x++)
+{
+qtd[x].addEventListener('click', function() {
+    document.querySelector('#total').style.backgroundColor = '#000'//innerText = 'orcValor';
+})
+  
+mais[x].addEventListener('click', ()=> {qtd[x].value++});
+
+menos[x].addEventListener('click', ()=> {if (qtd[x].value > 0) qtd[x].value--});
+
+}
+
+var view = 0;
+const tela = document.querySelectorAll('section');
+const back = document.querySelector('.btBack');
+const next = document.querySelector('.btNext');
+
+next.addEventListener('click', ()=> {
+if (view<3)
+{
+    tela.forEach(e => {e.style.display = "none"});
+    view++;
+    tela[view].style.display = "block";
+    if(view==2) document.getElementById('total').style.display = 'none';
+}
+});
+
+back.addEventListener('click', ()=> {
+if (view>0)
+{
+    tela.forEach(e => {e.style.display = "none"});
+    view--;
+    tela[view].style.display = "block";
+    if(view<2) document.getElementById('total').style.display = 'block';
+}});
+
+function orcFinal() {
+  
+    let  save = JSON.parse(localStorage.getItem('dados'));
+    
+    let dd = document.querySelectorAll('.infos input');
+
+    if (save)
+    {
+        dd[0].value = save.dd0
+        dd[1].value = save.dd1
+        dd[2].value = save.dd2
+        dd[3].value = save.dd3
+        dd[4].value = save.dd4
+    }
+    
+      inf = {
+          dd0: dd[0].value,
+          dd1: dd[1].value,
+          dd2: dd[2].value,
+          dd3: dd[3].value,
+          dd4: dd[4].value
+      }
+
+let bur = qtd[0].value;
+let sal = qtd[1].value;
+let egg = qtd[2].value;
+let dog = qtd[3].value;
+let fri = qtd[4].value;
+
+let lat = qtd[5].value;
+let min = qtd[6].value;
+let lts = qtd[7].value;
+let coc = qtd[8].value;
+
+let calc = parseFloat(bur*5+sal*8+egg*10+dog*7+fri*7);
+calc += parseFloat(lat*5+min*3+lts*8+coc*12);
+
+
+
+a = document.createElement('a');
+a.href = 'whats';
+a.click();
+
+}
+
+document.getElementById('dv-frete').addEventListener('click', ()=>
+{
+    let frete = document.querySelector('[name="frete"]:checked').value;
+    let ender = document.getElementById('ender');
+    
+    if (frete == 1)
+    {
+        ender.style.display='block';
+    }
+    else ender.style.display='none';
+});
+
+</script>
+</body>
+</html>
