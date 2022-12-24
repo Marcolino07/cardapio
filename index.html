@@ -360,15 +360,17 @@ const menos = document.getElementsByClassName('btMenos');
 
 for (let x=0; x<qtd.length; x++)
 {
-qtd[x].addEventListener('click', function() {
-    document.querySelector('#total').style.backgroundColor = '#000'//innerText = 'orcValor';
-})
-  
-mais[x].addEventListener('click', ()=> {qtd[x].value++});
+qtd[x].addEventListener('click', function()
+{
+    document.querySelector('#total').style.backgroundColor = '#000'
+});
 
-menos[x].addEventListener('click', ()=> {if (qtd[x].value > 0) qtd[x].value--});
+    mais[x].addEventListener('click', ()=> { qtd[x].value++ });
+
+    menos[x].addEventListener('click', ()=> { if (qtd[x].value > 0) qtd[x].value-- });
 
 }
+
 
 var view = 0;
 const tela = document.querySelectorAll('section');
@@ -431,13 +433,24 @@ let coc = qtd[8].value;
 let calc = parseFloat(bur*5+sal*8+egg*10+dog*7+fri*7);
 calc += parseFloat(lat*5+min*3+lts*8+coc*12);
 
-
-
 a = document.createElement('a');
 a.href = 'whats';
 a.click();
-
 }
+
+const pessoa = document.getElementById('numOp');
+const horas = document.getElementById('quantHora');
+pessoa.addEventListener('change', ()=>{if(horas.value)f_precalc()});
+horas.addEventListener('change', ()=>{if(pessoa.value)f_precalc()});
+function f_precalc()
+{
+    let hr = 0; if(pessoa.value>1){if(horas.value > 4){hr = 10}else{hr = 5}}
+    orcValor = parseFloat((pessoa.value*100) + ((pessoa.value*(horas.value*10))-(pessoa.value*hr)));
+
+    orcValor = orcValor.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+    document.querySelector('.preCalc > div').innerText = orcValor;
+}
+
 
 document.getElementById('dv-frete').addEventListener('click', ()=>
 {
